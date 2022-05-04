@@ -1,4 +1,4 @@
-# Code Quiz for Boot Camp Students
+# Code Quiz  - Javascript - for Boot Camp Students
 
 Authored by Charissa Hollister 05/04/2022
 
@@ -19,7 +19,7 @@ List notes and features here<br />
 ### URL Live Webpage: 
 ### GitHub Repo:
 
-![ScreenShot](relative link to image)
+![ScreenShot](./assets/images/ScreenshotWebPage.jpg)
 
 
 ## Future improvement opportunities
