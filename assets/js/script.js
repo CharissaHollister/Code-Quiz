@@ -8,9 +8,16 @@ var x = "";
 
 
 
-//-----------Code------------
+//-----------Code:startUp------------
 
 
+
+
+//-----------Code:questions------------
+
+
+
+//-----------Code:endScreen------------
 
 
 
@@ -37,3 +44,4 @@ var xxx = document.querySelector("#yyy");
 zzz.addEventListener('click', function(event) {
 
 })
+

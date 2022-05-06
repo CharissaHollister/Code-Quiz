@@ -26,7 +26,18 @@
     justify-content: left;
 }
 
+.purplePink{
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(47, 11, 140);
 
+}
+
+.purplePink:hover{
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(122, 69, 134);
+}
 
 /*--headline with quicklinks*/
 header {
@@ -41,51 +52,28 @@ header {
     z-index: 9999
 }
 
-header h2{
-    font-size: 48px;
-    padding-left: 25px;
+header div{
+
+}
+/*HighScores*/
+.leftHeader{
+    color: rgb(122, 69, 134);
 }
 
-nav {
-    justify-content: space-around;
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    font-size: 30px;
-    display: flex;
+.leftHeader:hover{
+    color: rgb(47, 11, 140);
+    border-bottom: 2pt solid rgb(47, 11, 140);
 }
 
-nav div{
-    padding: 0 25px;
+/*time*/
+.rightHeader{
+
 }
-
-nav a {
-    color: var(--primary-color);
-}
-
-nav a:hover{
-    color: var(--secondary-color);
-}
-
-/*hero background image and subtitle*/
-
-.heropg {
-    height: 300px;
-    width: 100vw;
-    margin-bottom: 25px;
-    background-image: url(./assets/images/heropgimage.jpg);
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border: black 1px solid;
-}
-
-.heropg div{
+/*countDown*/
+.rightHeader span{
 
 }
 
-.heropg p{
-
-}
 
 
 /*all of main sections*/
@@ -93,11 +81,20 @@ main{
 
 }
 
+#titleBlock{
+
+}
+
+.summary{
+
+}
+
+
 article{
 
 }
 
-/*within each subsections*/
+/*answer blocks*/
 
 article div{
 
@@ -112,23 +109,30 @@ article section{
 }
 
 /*subsection unique attributes*/
-.section1{
+.answer1{
 
 }
 
-.section2{
+.answer2{
 
 }
 
-.section3{
+.answer3{
 
 }
-
-.other{
+.answer4{
 
 }
-
-
+/*user enters initials at the end*/
+.initials{
+    font-size: 20px;
+}
+.initials::before{
+color: lightslategray;
+}
+.initials::after{
+    color:black;
+}
 
 
 

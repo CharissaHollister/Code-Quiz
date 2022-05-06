@@ -17,67 +17,97 @@
     <body>
 <!--headline with quicklinks-->
         <header class="header">
-            <h2>Headline</h2>
-            <nav>
-                        <div>
-                            <a href="#section1">Section 1</a>
-                        </div>
-                        <div>
-                            <a href="#section2">Section 2</a>
-                        </div>
-                        <div>
-                            <a href="#section3">Section 3</a>
-                        </div>
-                        <div>
-                            <a href="./ComingSoon.html" target="_blank">outside link</a>
-                        </div>
-
-            </nav>
+            <div class = "leftHeader">
+                <a href="./HighScores.html">View High Scores</a>
+            </div>
+            <div class="rightHeader" >
+                <a>Time:<span ID="countDown">00</span></a>
+            </div>
         </header>
 
-        <!--Banner background image in CSS class heropg-->
-        <div class="heropg" title="credit URL">
-            <p>
 
-            </p>
+ <!--Starting page; hide after starting quiz-->
+        <main>
+        <!--Title Block-->
+        <div id = "titleBlock">
+            Coding Quiz Challenge
+        </div>
+        <div id = "introSummary">
+            Try to answer the following code-related questions within the time limit.
+            Keep in mind the incorrect answers will penalize your score/time 
+            by ten seconds! Happy Coding!
         </div>
 
+        </main>
+
         <main>
-            <article class="section1" id="section1">
-                <div>
-                    <h3></h3>
-                </div>
-                <section>
-
-                </section>
-            </article>
-
-            <article class="section2" id="section2">
-                <div>
-                    <h3></h3>
-                </div>
-                <section>
-
-                </section>
-            </article>
-
-            <article class="section3" id="section3">
-                <div>
-                    <h3></h3>
-                </div>
-                <section>
-
-                </section>
-            </article>
-            <div class = "other">
-
+                <!--Title Block-->
+            <div id = "titleBlock">
+                <!--will get replaced with questions then "All Done!"-->
+                Question
             </div>
+                <!--hide after start-->
+            <div id = "introSummary" class="summary">
+                Try to answer the following code-related questions within the time limit.
+                Keep in mind the incorrect answers will penalize your score/time 
+                by ten seconds! Happy Coding!
+            </div>
+                <!--hide after start-->
+            <div class="startBtn" class="purplePink">
+                <button btn="startQuiz">Start Quiz</button>
+            </div>
+                <!--hide at start and again at end-->
+            <article class="purplePink" class="answer1" id="answer1">
+                <div>
+                    <h3>1.answer</h3>
+                </div>
+                <section>
+                </section>
+            </article>
+            <article class="purplePink" class="answer2" id="answer2">
+                <div>
+                    <h3>2.answer</h3>
+                </div>
+                <section>
+                </section>
+            </article>
+            <article class="purplePink" class="answer3" id="answer3">
+                <div>
+                    <h3>3.answer</h3>
+                </div>
+                <section>
+                </section>
+            </article>
+            <article class="purplePink" class="answer4" id="answer4">
+                <div>
+                    <h3>4.answer</h3>
+                </div>
+                <section>
+
+                </section>
+            </article>
+                <!--empty then displays Wrong or Correct-->
+            <div class="rightWrong"> 
+            </div>
+                <!--hide until end, starts enter 
+                    initials then fills in with user input-->
+            <div class="initials">
+                <p>Enter initials</p>
+            </div>
+            <div class="endSummary" class="summary">
+                Your final score is <span class="endScore">##</span>
+            </div>
+            <div class="startBtn" class="purplePink">
+                <button btn="startQuiz">Start Quiz</button>
+            </div>
+
+
         </main>
 
         <footer>
-            <h2>Charissa Hollister<span> - Software implementation and Development</span> </h2>
-            <p>&copy;copyright</p>
+            <h2>Correct!</h2>
         </footer>
+
 
 
         <script src="./assets/js/script.js"></script>
