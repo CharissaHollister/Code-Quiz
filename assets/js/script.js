@@ -40,6 +40,8 @@ var userScore = {};
 var userScoreSets = []; //need to pull in from local storage
 var i = 0;
 var answerSet = {};
+var rightWrong = 0;
+var timeLeft = 180;
 ////figure out how to clear answer set Name so it returns to starting at name = 1
 
 
@@ -53,7 +55,7 @@ const myQuestions = [
         c: "Brendan Eich",//answer:"C",
         d: "answer4"//answer:"D",
       },
-      //correctAnswer: "c"
+      correctAnswer: "C"
     },
     {
       question: "Which one of these is a JavaScript package manager?",
@@ -63,7 +65,7 @@ const myQuestions = [
         c: "npm",
         d: "answer444"
       },
-     // correctAnswer: "c"
+     correctAnswer: "C"
     },
     {
       question: "Which tool can you use to ensure code quality?",
@@ -73,7 +75,7 @@ const myQuestions = [
         c: "RequireJS",
         d: "ESLint"
       },
-      //correctAnswer: "d"
+      correctAnswer: "D"
     }
   ];
 
@@ -96,7 +98,7 @@ var answers = [];
 
 
 function countdown() {
-    var timeLeft = 180;
+
 
     // repeats at these given how long between events
 
@@ -164,7 +166,7 @@ endAreaSection.style.display = 'none';
 //   }
 
 function finalPage(){
-console.log("finalpage is running")
+//console.log("finalpage is running")
 
 ///add countdown stopping
     titleBlockVar.textContent = "All Done!";
@@ -208,21 +210,41 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
    var answerB = (document.getElementById('answer2Select').checked);
    var answerC = (document.getElementById('answer3Select').checked);
    var answerD = (document.getElementById('answer4Select').checked);
+   //var answerMatch = myQuestions[i].correctAnswer
+   if(answerA ==true){
+       answerNow = "A";
+   }else if(answerB == true){
+       answerNow = "B";
+   }else if(answerC == true){
+       answerNow = "C";
+    }else if(answerD == true){
+        answerNow = "D";
+    }else{window.alert("must select one answer")};
+    // answerSet.questionID = (i + 1),
+    // answerSet.a = answerA,
+    // answerSet.b = answerB,
+    // answerSet.c = answerC,
+    // answerSet.d = answerD,
+    if(myQuestions[i].correctAnswer === answerNow){
+        rightWrong = rightWrong
+            i++}
+        else{rightWrong = (rightWrong + 1)
+            ////add to minus 10 seconds from timer //
+            timeLeft = (timeLeft - 10)}
 
 
-    answerSet.questionID = (i + 1),
-    answerSet.a = answerA,
-    answerSet.b = answerB,
-    answerSet.c = answerC,
-    answerSet.d = answerD
     console.log(answerSet)
-    i++
+    console.log(rightWrong)
+    
     displayQuestion()
 }
 
+// function finalscore(){
+//     //calculate final score
 
+// }
 
-   // var answerA = document.querySelectorAll("input[type='radio'][name='answer1Select']:checked");
+// var answerA = document.querySelectorAll("input[type='radio'][name='answer1Select']:checked");
 // console.log(answerA)
 // console.log(answerB)
 // console.log(answerC)
@@ -301,9 +323,7 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
 // }
 
 
-//function finalscore(){
-    //calculate final score
-//}
+
 // userScoreSets.appendChild(userScore);
    // var taskNameInput = document.querySelector("input[name='task-name']").value;
     // check if input values are empty strings
@@ -337,6 +357,7 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
     ////need to move to next level i
       }else{
         hideShowEnd();
+        //finalpage();
         
    }
   }
@@ -350,7 +371,6 @@ hideShowStart();
 startButton.addEventListener("click", countdown);
 startButton.addEventListener("click", hideShowMain);
 startButton.addEventListener("click", displayQuestion);
-
 submitButton.addEventListener("click", answerCreation);
 submitScoreButton.addEventListener("click", finalPage);
 
