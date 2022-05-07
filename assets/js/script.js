@@ -8,11 +8,12 @@
 //--------Section variables-----------
 
 var highScoreLink = document.querySelector('.leftHeader');
-var highScoreLink = document.querySelector('.rightHeader');
+var TimerArea = document.querySelector('.rightHeader');
 var introSection = document.getElementById('introSummary');
 var startButtonSection = document.querySelector('.startButtonsArea');
 var answerAreaSection = document.querySelector('.answerArea');
-var answerAreaSection = document.querySelector('.endArea');
+var endAreaSection = document.querySelector('.endArea');
+// var highScoresPageSection = document.querySelector('.highScorePage')
 
 //never hidden: titleIntro, Header, 
 
@@ -28,15 +29,16 @@ var answer3Button = document.querySelector('#answer3');
 var answer4Button = document.querySelector('#answer4');
 //var rightWrongSection = document.getElementById('rightWrong');
 var submitButton = document.getElementById('submitBtn');
+var submitScoreButton = document.getElementById('submitScoreBtn');
 var initialsSection = document.getElementById('initials');
 var scoreTitleSection = document.getElementById('scoreTitle');
 
 
 //-------value variables-------
 
-const userScore = {};
-const userScoreSets = [];
-const i = 0;
+var userScore = {};
+var userScoreSets = [];
+var i = 0;
 
 
 //-----------quiz questions array------------
@@ -117,49 +119,73 @@ function countdown() {
   }
 
   function hideShowStart(){
-
-  scoreTitleSection.style.display = 'none';
-rightWrongSection.style.display = 'none';
+highScoreLink.style.display = 'block';
+TimerArea.style.display = 'block';
+introSection.style.display = 'block';
+startButtonSection.style.display = 'block';
+answerAreaSection.style.display = 'none';
+endAreaSection.style.display = 'none';
+// highScoresPageSection.style.display = 'none';
   }
 
   function hideShowMain(){
-    startButton.style.display = 'none';
-  introSection.style.display = 'none';
-  answerAreaSection.style.display = 'none';
-  initialsSection.style.display = 'none';
-  scoreTitleSection.style.display = 'none';
-    rightWrongSection.style.display = 'none';
+    highScoreLink.style.display = 'block';
+    TimerArea.style.display = 'block';
+    introSection.style.display = 'none';
+    startButtonSection.style.display = 'none';
+    answerAreaSection.style.display = 'block';
+    endAreaSection.style.display = 'none';
+    // highScoresPageSection.style.display = 'none';
   }
 
   function hideShowEnd(){
-    startButton.style.display = 'none';
-  introSection.style.display = 'none';
-  initialsSection.style.display = 'block';
-  scoreTitleSection.style.display = 'block';
-    rightWrongSection.style.display = 'none';
+    highScoreLink.style.display = 'block';
+    TimerArea.style.display = 'block';
+    introSection.style.display = 'none';
+    startButtonSection.style.display = 'none';
+    answerAreaSection.style.display = 'none';
+    endAreaSection.style.display = 'block';
+    
+    console.log("hideshowend working")
+
+    // highScoresPageSection.style.display = 'none';
   }
 
-  
+//   function hideShowHighScores(){
+//     highScoreLink.style.display = 'none';
+//     TimerArea.style.display = 'none';
+//     introSection.style.display = 'none';
+//     startButtonSection.style.display = 'none';
+//     answerAreaSection.style.display = 'none';
+//     endAreaSection.style.display = 'none';
+//     highScoresPageSection.style.display = 'block';
+//   }
+
 function finalPage(){
- 
-    var userInitials = window.prompt("What are your intials?")
-    if (!userInitials) {
+console.log("finalpage is running")
+    titleBlockVar.textContent = "All Done!";
+   // var userInitials = window.prompt("What are your intials?")
+   //oText = oForm.elements["text_element_name"];
+   console.log(document.getElementById('initials').value)
+    if (!document.getElementById('intials').value) {
             alert("You need to fill out your initials!");
             finalPage();
     }else{
+        var userInitials = document.getElementById('intials').value;
+        console.log(userInitials)
         // userScore = {
         // name: userInitials,
         // highScore: 10 //highScore.value;
         // };
         userScore.name = userInitials,
         userScore.highScore = 10 //highScore.value;
-        hideShowEnd();
+
       initialsSection.textContent = userScore.name;
       scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
     }
 
   // set new submission to local storage 
- const highScoreRecord = JSON.stringify(userScore);
+ var highScoreRecord = JSON.stringify(userScore);
  //console.log(highScoreRecord);
 localStorage.setItem("LastUser", highScoreRecord);
 return userScore;
@@ -195,7 +221,9 @@ console.log(userScore)
     answer4Button.textContent = myQuestions[i].answers.d;
     i++;
       }else{
-          finalPage();
+        hideShowEnd();
+        
+
    }
   }
 
@@ -207,6 +235,7 @@ startButton.addEventListener("click", hideShowMain);
 startButton.addEventListener("click", displayQuestion);
 
 submitButton.addEventListener("click", displayQuestion);
+submitScoreButton.addEventListener("submit", finalPage);
 
 
 // var goBack = document.querySelector('#goBack');

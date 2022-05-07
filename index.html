@@ -64,20 +64,25 @@
                 <!--empty then displays Wrong or Correct-->
             <!-- <div class="rightWrong"> 
             </div> -->
-        </section>
+            </section>
                 <!--hide until end, starts enter 
                     initials then fills in with user input-->
-                    <section class="endArea">
-            <div class="initials">
-                <p id="initials" name = "initialsEntry" placeholder="Enter Your Initials Here" >x</p>
-            </div>
-            <div id= "endSummary" class="summary">
-                <div id="scoreTitle" id="endScore">Your Score</div>
-            </div>
-            <div class="submitScoreBtnArea">
-                <button id="submitScoreBtn" class="purplePink">Submit</button>
-            </div>
+            <section class="endArea">
+                <div class="initials">
+                    <form class="initials">
+                        <label for = "initialsEntry">Intials: </label>
+                        <input id="initials"type="text"  name = "initialsEntry" placeholder="Enter Your Initials Here"/>
+                    </form>
+                </div>
+                <div id= "endSummary" class="summary">
+                    <div id="scoreTitle" id="endScore">Your Score</div>
+                </div>
+                <div class="submitScoreBtnArea">
+                    <button id="submitScoreBtn" class="purplePink">Score Submit</button>
+                </div>
             </section>
+            <!-- <section class = "highScoresPage">
+            </section> -->
 
         </main>
 
