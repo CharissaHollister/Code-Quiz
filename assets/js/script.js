@@ -37,8 +37,10 @@ var scoreTitleSection = document.getElementById('scoreTitle');
 //-------value variables-------
 
 var userScore = {};
-var userScoreSets = [];
+var userScoreSets = []; //need to pull in from local storage
 var i = 0;
+var answerSet = {};
+////figure out how to clear answer set Name so it returns to starting at name = 1
 
 
 //-----------quiz questions array------------
@@ -46,12 +48,12 @@ const myQuestions = [
     {
       question: "Who invented JavaScript?",
       answers: {
-        a: "Douglas Crockford",
-        b: "Sheryl Sandberg",
-        c: "Brendan Eich",
-        d: "answer4"
+        a: "Douglas Crockford",answer:"A",
+        b: "Sheryl Sandberg",answer:"B",
+        c: "Brendan Eich",answer:"C",
+        d: "answer4",answer:"D",
       },
-      correctAnswer: "c"
+      //correctAnswer: "c"
     },
     {
       question: "Which one of these is a JavaScript package manager?",
@@ -61,7 +63,7 @@ const myQuestions = [
         c: "npm",
         d: "answer444"
       },
-      correctAnswer: "c"
+     // correctAnswer: "c"
     },
     {
       question: "Which tool can you use to ensure code quality?",
@@ -71,11 +73,11 @@ const myQuestions = [
         c: "RequireJS",
         d: "ESLint"
       },
-      correctAnswer: "d"
+      //correctAnswer: "d"
     }
   ];
 
-const answers = [];
+var answers = [];
 
 //-----------Code:startUp------------
 
@@ -145,7 +147,7 @@ endAreaSection.style.display = 'none';
     startButtonSection.style.display = 'none';
     answerAreaSection.style.display = 'none';
     endAreaSection.style.display = 'block';
-    
+
     console.log("hideshowend working")
 
     // highScoresPageSection.style.display = 'none';
@@ -163,21 +165,24 @@ endAreaSection.style.display = 'none';
 
 function finalPage(){
 console.log("finalpage is running")
+
+///add countdown stopping
     titleBlockVar.textContent = "All Done!";
    // var userInitials = window.prompt("What are your intials?")
    //oText = oForm.elements["text_element_name"];
-   console.log(document.getElementById('initials').value)
-    if (!document.getElementById('intials').value) {
+   //console.log(document.getElementById('initials').value)
+   var userInitials = (document.getElementById('initials').value)
+    if (userInitials == null) {
             alert("You need to fill out your initials!");
             finalPage();
     }else{
-        var userInitials = document.getElementById('intials').value;
         console.log(userInitials)
         // userScore = {
         // name: userInitials,
         // highScore: 10 //highScore.value;
         // };
         userScore.name = userInitials,
+////retrieve countdown stopped value to create highscore
         userScore.highScore = 10 //highScore.value;
 
       initialsSection.textContent = userScore.name;
@@ -187,11 +192,108 @@ console.log("finalpage is running")
   // set new submission to local storage 
  var highScoreRecord = JSON.stringify(userScore);
  //console.log(highScoreRecord);
-localStorage.setItem("LastUser", highScoreRecord);
-return userScore;
+localStorage.setItem("lastUser", highScoreRecord);
+userScoreSets.push(userScore)
+// console.log(userScore)
+console.log(userScoreSets)
+return userScoreSets;
 }
 
-console.log(userScore)
+function answerCreation(){
+var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
+  console.log(answerOptions);
+
+// console.log(answerNow);
+   var answerA = (document.getElementById('answer1Select').checked);
+   var answerB = (document.getElementById('answer2Select').checked);
+   var answerC = (document.getElementById('answer3Select').checked);
+   var answerD = (document.getElementById('answer4Select').checked);
+   // var answerA = document.querySelectorAll("input[type='radio'][name='answer1Select']:checked");
+// console.log(answerA)
+// console.log(answerB)
+// console.log(answerC)
+// console.log(answerD)
+
+    answerSet.name = (i + 1),
+    answerSet.a = answerA,
+    answerSet.b = answerB,
+    answerSet.c = answerC,
+    answerSet.d = answerD
+
+console.log(answerSet)
+return(answerSet)}
+// i++;
+// displayQuestion();
+
+// if(answerA == true){
+//     var answerNow = ([i] + "A");
+// }
+// var answerRecord = JSON.stringify(answerNow);
+// localStorage.setItem("lastAnswer", answerRecord);
+// answers.push(answerRecord)
+// // console.log(userScore)
+// console.log(answers)
+// return answers;
+// }
+        //let selectedSize;
+        // for (const radioButton of answerOptions) {
+        // if (answerSelect[1].checked) {
+        //     var answerNow = ([i] + "A");
+        //     console.log(answerNow);
+        // }
+    //     }
+    // answerSet.a = answer1Button
+    // answers.push(answerSet)
+    // const btn = document.querySelector('#btn');        
+    //     const radioButtons = document.querySelectorAll('input[name="size"]');
+    //     btn.addEventListener("click", () => {
+    //         let selectedSize;
+    //         for (const radioButton of radioButtons) {
+    //             if (radioButton.checked) {
+    //                 selectedSize = radioButton.value;
+    //                 break;
+    //             }
+    //         }
+// answer1Select.click(
+// answer1Select = true)
+// console.log(answer1Select);
+
+// if(answer1Select == true){
+// var answerNow = ([i] + "A");
+// console.log(answerNow);
+// // answerSet[].appendChild(answerNow);
+// }
+//console.log(answerSet)
+//if b
+
+//if c
+
+//id d
+// for(var i=0; i<questions.length; i++){
+      
+//     // first reset the list of answers
+//     answers = [];
+
+//     // for each available answer...
+//     for(letter in myQuestions[i].answers){
+
+//       // ...add an html radio button
+//       answers.push(
+//         '<label>'
+//           + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+//           + letter + ': '
+//           + myQuestions[i].answers[letter]
+//         + '</label>'
+//       );
+//     }
+
+//     displayQuestion();
+// }
+
+
+//function finalscore(){
+    //calculate final score
+//}
 // userScoreSets.appendChild(userScore);
    // var taskNameInput = document.querySelector("input[name='task-name']").value;
     // check if input values are empty strings
@@ -219,14 +321,19 @@ console.log(userScore)
     answer2Button.textContent = myQuestions[i].answers.b;
     answer3Button.textContent = myQuestions[i].answers.c;
     answer4Button.textContent = myQuestions[i].answers.d;
+
+    answerCreation();
     i++;
+    ////need to move to next level i
       }else{
         hideShowEnd();
         
-
    }
   }
 
+  function runThru(){
+      
+  }
 
 //---------------Add event listener-----------
 hideShowStart();
@@ -234,8 +341,8 @@ startButton.addEventListener("click", countdown);
 startButton.addEventListener("click", hideShowMain);
 startButton.addEventListener("click", displayQuestion);
 
-submitButton.addEventListener("click", displayQuestion);
-submitScoreButton.addEventListener("submit", finalPage);
+submitButton.addEventListener("click", answerCreation);
+submitScoreButton.addEventListener("click", finalPage);
 
 
 // var goBack = document.querySelector('#goBack');
