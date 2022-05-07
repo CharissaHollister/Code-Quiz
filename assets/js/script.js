@@ -48,10 +48,10 @@ const myQuestions = [
     {
       question: "Who invented JavaScript?",
       answers: {
-        a: "Douglas Crockford",answer:"A",
-        b: "Sheryl Sandberg",answer:"B",
-        c: "Brendan Eich",answer:"C",
-        d: "answer4",answer:"D",
+        a: "Douglas Crockford",//answer:"A",
+        b: "Sheryl Sandberg",//answer:"B",
+        c: "Brendan Eich",//answer:"C",
+        d: "answer4"//answer:"D",
       },
       //correctAnswer: "c"
     },
@@ -208,11 +208,7 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
    var answerB = (document.getElementById('answer2Select').checked);
    var answerC = (document.getElementById('answer3Select').checked);
    var answerD = (document.getElementById('answer4Select').checked);
-   // var answerA = document.querySelectorAll("input[type='radio'][name='answer1Select']:checked");
-// console.log(answerA)
-// console.log(answerB)
-// console.log(answerC)
-// console.log(answerD)
+
 
     answerSet.questionID = (i + 1),
     answerSet.a = answerA,
@@ -223,6 +219,14 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
     i++
     displayQuestion()
 }
+
+
+
+   // var answerA = document.querySelectorAll("input[type='radio'][name='answer1Select']:checked");
+// console.log(answerA)
+// console.log(answerB)
+// console.log(answerC)
+// console.log(answerD)
 // var answerRecord = JSON.stringify(answerNow);
 // localStorage.setItem("lastAnswer", answerRecord);
 // answers.push(answerRecord)
