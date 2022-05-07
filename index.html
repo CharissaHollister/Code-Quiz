@@ -16,18 +16,18 @@
     </head>
     <body>
 <!--headline with quicklinks-->
-        <header class="header">
-            <div class = "leftHeader">
-                <a href="HighScores.html">View High Scores</a>
+        <header class="header" id="header">
+            <div>
+                <a class = "leftHeader" href="HighScores.html">View High Scores</a>
             </div>
             <div class="rightHeader" >
-                <a>⏳ Time Remaining :<span ID="countDown">00</span></a>
+                <a>⏳ Time Remaining :<span ID="countDown">180 seconds</span></a>
             </div>
         </header>
 
-
- <!--Starting page; hide after starting quiz-->
+<!--Starting page; hide after starting quiz-->
         <main>
+            <section class ="titleIntro">
                 <!--Title Block-->
             <div id = "titleBlock">
                 <!--will get replaced with questions then "All Done!"-->
@@ -39,60 +39,50 @@
                 Keep in mind the incorrect answers will penalize your score/time 
                 by ten seconds! Happy Coding!
             </div>
+            </section>
                 <!--hide after start-->
-            <div class="startBtn" >
-                <button btn="startQuiz" class="purplePink">Start Quiz</button>
-            </div>
+            <section class="startButtonsArea" class="buttons" >
+                <button id="startQuiz" class="purplePink">Start Quiz</button>
+            </section>
+            <section class = "answerArea">
                 <!--hide at start and again at end-->
-            <article class="purplePink" class="answer1" id="answer1">
-                <div>
-                    <h3>1.answer</h3>
-                </div>
-                <section>
-                </section>
+            <article class="answers">
+                    <input type="radio" id="answer1Select"/><h3 class="purplePink" id="answer1"></h3>
             </article>
-            <article class="purplePink" class="answer2" id="answer2">
-                <div>
-                    <h3>2.answer</h3>
-                </div>
-                <section>
-                </section>
+            <article class="answers">
+                <input type="radio" id="answer1Select"/><h3 class="purplePink" id="answer2"></h3>
             </article>
-            <article class="purplePink" class="answer3" id="answer3">
-                <div>
-                    <h3>3.answer</h3>
-                </div>
-                <section>
-                </section>
+            <article class="answers">
+                <input type="radio" id="answer1Select"/><h3 class="purplePink" id="answer3"></h3>
             </article>
-            <article class="purplePink" class="answer4" id="answer4">
-                <div>
-                    <h3>4.answer</h3>
-                </div>
-                <section>
-
-                </section>
+            <article class="answers">
+                <input type="radio" id="answer1Select"/><h3 class="purplePink" id="answer4"></h3>
             </article>
-                <!--empty then displays Wrong or Correct-->
-            <div class="rightWrong"> 
+            <div class="submitBtn">
+                <button id="submitBtn" class="purplePink">Submit</button>
             </div>
+                <!--empty then displays Wrong or Correct-->
+            <!-- <div class="rightWrong"> 
+            </div> -->
+        </section>
                 <!--hide until end, starts enter 
                     initials then fills in with user input-->
+                    <section class="endArea">
             <div class="initials">
-                <p>Enter initials</p>
+                <p id="initials" name = "initialsEntry" placeholder="Enter Your Initials Here" >x</p>
             </div>
-            <div class="endSummary" class="summary">
-                Your final score is <span class="endScore">##</span>
+            <div id= "endSummary" class="summary">
+                <div id="scoreTitle" id="endScore">Your Score</div>
             </div>
-            <div class="submitBtn">
-                <button btn="submitScore" class="purplePink">Submit</button>
+            <div class="submitScoreBtnArea">
+                <button id="submitScoreBtn" class="purplePink">Submit</button>
             </div>
-
+            </section>
 
         </main>
 
         <footer>
-            <h2>Correct!</h2>
+            <h2 id = "rightWrong"></h2>
         </footer>
 
 
