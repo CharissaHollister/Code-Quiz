@@ -194,8 +194,8 @@ console.log("finalpage is running")
  //console.log(highScoreRecord);
 localStorage.setItem("lastUser", highScoreRecord);
 userScoreSets.push(userScore)
-// console.log(userScore)
-console.log(userScoreSets)
+console.log(userScore)
+//console.log(userScoreSets)
 return userScoreSets;
 }
 
@@ -214,14 +214,20 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
 // console.log(answerC)
 // console.log(answerD)
 
-    answerSet.name = (i + 1),
+    answerSet.questionID = (i + 1),
     answerSet.a = answerA,
     answerSet.b = answerB,
     answerSet.c = answerC,
     answerSet.d = answerD
+    console.log(answerSet)
+    i++
+    displayQuestion()
+}
+// var answerRecord = JSON.stringify(answerNow);
+// localStorage.setItem("lastAnswer", answerRecord);
+// answers.push(answerRecord)
 
-console.log(answerSet)
-return(answerSet)}
+//return(answerSet)}
 // i++;
 // displayQuestion();
 
@@ -322,8 +328,8 @@ return(answerSet)}
     answer3Button.textContent = myQuestions[i].answers.c;
     answer4Button.textContent = myQuestions[i].answers.d;
 
-    answerCreation();
-    i++;
+    
+    //i++;
     ////need to move to next level i
       }else{
         hideShowEnd();
@@ -331,9 +337,9 @@ return(answerSet)}
    }
   }
 
-  function runThru(){
-      
-  }
+//   function runThru(){
+
+//   }
 
 //---------------Add event listener-----------
 hideShowStart();
