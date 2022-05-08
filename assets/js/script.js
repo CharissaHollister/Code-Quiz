@@ -15,7 +15,7 @@ var answerAreaSection = document.querySelector('.answerArea');
 var endAreaSection = document.querySelector('.endArea');
 var highScoresPageSection = document.querySelector('.highScoresPage')
 
-//never hidden: titleIntro, Header, 
+//never hidden: titleIntro, Header, footer
 
 
 //------------item variables---------
@@ -33,6 +33,7 @@ var submitScoreButton = document.getElementById('submitScoreBtn');
 var initialsSection = document.getElementById('initials');
 var scoreTitleSection = document.getElementById('scoreTitle');
 var yourScoreArea = document.getElementById('scoreYours');
+var wrongAnswerArea = document.getElementById('wrongAnswer');
 
 //-------value variables-------
 
@@ -216,10 +217,18 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
     // answerSet.d = answerD,
     if(myQuestions[i].correctAnswer === answerNow){
         rightWrong = rightWrong
+        wrongAnswerArea.textContent = ' '
+        //add how to add to uncheck radio buttons
+        answer1Select.checked = false;
+        answer2Select.checked = false;
+        answer3Select.checked = false;
+        answer4Select.checked = false;
             i++}
         else{rightWrong = (rightWrong + 1)
             ////add to minus 10 seconds from timer //
-            timeLeft = (timeLeft - 10)}
+            timeLeft = (timeLeft - 10)
+            wrongAnswerArea.textContent = "Incorrect"
+        }
     //console.log(answerSet)
     console.log(rightWrong)
   
