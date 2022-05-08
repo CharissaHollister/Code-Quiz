@@ -15,7 +15,7 @@
         <link  rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon1.png">
     </head>
     <body>
-<!--headline with quicklinks-->
+<!--headline with quicklinks, present on all papges-->
         <header class="header" id="header">
             <div>
                 <a class = "leftHeader" href="HighScores.html">View High Scores</a>
@@ -27,8 +27,9 @@
 
 <!--Starting page; hide after starting quiz-->
         <main>
+            <!-- startPage -->
             <section class ="titleIntro">
-                <!--Title Block-->
+                <!--Title Block,used on all pages-->
             <div id = "titleBlock">
                 <!--will get replaced with questions then "All Done!"-->
                 Code Quiz Challenge
@@ -44,6 +45,7 @@
             <section class="startButtonsArea" class="buttons" >
                 <button id="startQuiz" class="purplePink">Start Quiz</button>
             </section>
+            <!-- answersPge -->
             <section class = "answerArea">
                 <!--hide at start and again at end-->
                 <article class="answers">
@@ -67,6 +69,7 @@
             </section>
                 <!--hide until end, starts enter 
                     initials then fills in with user input-->
+                    <!-- final page -->
             <section class="endArea">
                 <div class="initialsArea">
                     <form class="initials">
@@ -81,6 +84,8 @@
                     <button id="submitScoreBtn" class="purplePink">Score Submit</button>
                 </div>
             </section>
+
+            <!-- highScoresPage -->
             <section class = "highScoresPage">
                 <article class="scores" class="scoreYours" id="scoreYours">
                     <h3 id="scoreYours"></h3>

@@ -250,7 +250,7 @@ function displayQuestion() {
         localStorage.getItem(userScoreSets)
             //// fill in the line with current player score
         //do I need to unstringify??
-           yourScoreArea.textContent = ("congrats" + userScore.name + "your score is: " + userScore.highscore)
+           yourScoreArea.textContent = ("congrats " + userScore.name + " your score is: " + userScore.highscore)
            console.log(yourScoreArea)
 
            //I'll do the buttons and such later//
@@ -268,7 +268,7 @@ startButton.addEventListener("click", countdown);
 startButton.addEventListener("click", hideShowMain);
 startButton.addEventListener("click", displayQuestion);
 submitButton.addEventListener("click", answerCreation);
-submitScoreButton.addEventListener("click", finalPage);
+submitScoreButton.addEventListener("click", highScoresPage);
 
 
 
