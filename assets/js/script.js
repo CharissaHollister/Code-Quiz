@@ -34,8 +34,8 @@ var initialsSection = document.getElementById('initials');
 var scoreTitleSection = document.getElementById('scoreTitle');
 var yourScoreArea = document.getElementById('scoreYours');
 var wrongAnswerArea = document.getElementById('wrongAnswer');
-var goBackButton = document.querySelector('.goBack');
-var clearScoresButton = document.querySelector('.clearScores');
+var goBackButton = document.querySelector('#goBack');
+var clearScoresButton = document.querySelector('#clearScores');
 
 //-------value variables-------
 
@@ -174,6 +174,7 @@ highScoresPageSection.style.display = 'none';
 function finalPage(){
 ///add countdown stopping
 /////////////RONNNNNNNY/////////////
+////how to capture the time at the moment of quiz ending
     endTime = timeLeft  ////fix it to work :(
 
     
@@ -229,13 +230,14 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
        answerNow = "C";
     }else if(answerD == true){
         answerNow = "D";
-    }else{window.alert("must select one answer")};
+    }else{answerNow = null};
     // answerSet.questionID = (i + 1),
     // answerSet.a = answerA,
     // answerSet.b = answerB,
     // answerSet.c = answerC,
     // answerSet.d = answerD,
-    if(myQuestions[i].correctAnswer === answerNow){
+    if(answerNow == null){wrongAnswerArea.textContent = "must select one answer"}
+    else if(myQuestions[i].correctAnswer === answerNow){
         rightWrong = rightWrong
         wrongAnswerArea.textContent = ' '
         //add how to add to uncheck radio buttons
@@ -264,7 +266,7 @@ function displayQuestion() {
     answer2Button.textContent = myQuestions[i].answers.b;
     answer3Button.textContent = myQuestions[i].answers.c;
     answer4Button.textContent = myQuestions[i].answers.d;
-    ////need to move to next level i
+    //need to move to next level i
       }else{
         hideShowEnd();        
         finalPage();
@@ -280,6 +282,8 @@ function displayQuestion() {
            //// pull in local storage answers //players and overall highscores array 
         localStorage.getItem(userScore)
         localStorage.getItem(userScoreSets)
+        console.log(userScore)
+        console.log(userScoreSets)
             //// fill in the line with current player score
         //do I need to unstringify??
            yourScoreArea.textContent = ("Congrats " + userScore.name + " your score is: " + userScore.highScore)
@@ -300,7 +304,6 @@ function displayQuestion() {
             }
 
     }
-
 
                 //// Go Back button
             function goBack(){

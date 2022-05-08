@@ -55,7 +55,6 @@ header {
   padding: 15px 40px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-
   color: var(--secondary-color);
   z-index: 9999;
 }
@@ -78,20 +77,11 @@ header {
 .rightHeader {
   color: black;
 }
-/*countDown*/
-.rightHeader span {
-  color: black;
-}
 
 /*all of main sections*/
 main {
   width: 60vw;
   margin-left: 20vw;
-}
-
-/*////figure out how to center start, submit, etc buttons*/
-.buttons{
-
 }
 
 #titleBlock {
@@ -102,7 +92,16 @@ main {
 
 .summary {
   font-size: 16px;
-  padding: 30px;
+  padding: 20px 10vw;
+}
+
+.initialsArea, #endSummary{
+  display: inline-block;
+  justify-content: center;
+}
+#scoreTitle{
+  font-size: 16px;
+  font-weight:bold;
 }
 
 .scores {
@@ -112,6 +111,7 @@ main {
   padding-left: 10px;
   padding-right: 10px;
   background-color: lightgray;
+  color: black;
 }
 
 /*subsection unique attributes*/
@@ -127,9 +127,11 @@ padding-left: 20vw;
 /*user enters initials at the end*/
 .initials {
   font-size: 20px;
+  font-weight:bold;
 }
 .initials::before {
   color: lightslategray;
+  font-style: italic;
 }
 .initials::after {
   color: black;
@@ -137,7 +139,6 @@ padding-left: 20vw;
 
 /*footer*/
 footer{
-  border-top: solid darkgray 5 pt;
   padding: 20px;
   width: 60vw;
   margin-left: 20vw;
@@ -147,16 +148,46 @@ footer{
 }
 
 
-/*high scores specific*/
-.backBtn,
-.clearBtn {
-}
-
-
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
+
+main {
+  width: 90vw;
+  margin-left: 5vw;
+}
+
+#titleBlock {
+  text-align: center;
+  font-size: 25px;
+}
+.summary {
+  font-size: 12px;
+  padding: 20px 0;
+}
+header {
+  padding: 15px 10px;
+  display: inline-block;
+}
+.header a{
+  font-size: 14px;
+  padding: 15px;
+  padding-left: 30px;
+}
+.initials, #scoreTitle {
+  font-size: 14px;
+}
+.answerArea{
+  font-size: 10px;
+}
+.scores {
+  margin-left: 15vw;
+  width: 60vw;
+}
+.initialsArea, #endSummary{
+  display: block;
+}
 }
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
-@media screen and (max-width: 550px) {
-}
+/* @media screen and (max-width: 550px) {
+} */
