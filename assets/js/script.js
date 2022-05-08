@@ -208,6 +208,8 @@ function finalPage(){
         userScoreSets.push(userScore)
         console.log(highScoreRecord)
         console.log(userScore)
+        console.log(userScoreSetsgit )
+        console.log(lastUser)
     //console.log(userScoreSets)
     return userScoreSets;
    //}
