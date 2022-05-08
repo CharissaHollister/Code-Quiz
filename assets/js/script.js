@@ -154,7 +154,9 @@ highScoresPageSection.style.display = 'none';
 function finalPage(){
 ///add countdown stopping
 /////////////RONNNNNNNY/////////////
-    endTime = timeLeft  ////fix it to work
+    endTime = timeLeft  ////fix it to work :(
+
+    
     titleBlockVar.textContent = "All Done!";
     ////fix later
 //    if(userScore.highScore = "Better Luck Next Time"){
@@ -236,7 +238,8 @@ function displayQuestion() {
     ////need to move to next level i
       }else{
         hideShowEnd();        
-   }
+        finalPage();
+    }
   }
 
   //--------------highscores page------------
