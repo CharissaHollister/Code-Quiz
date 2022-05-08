@@ -13,7 +13,7 @@ var introSection = document.getElementById('introSummary');
 var startButtonSection = document.querySelector('.startButtonsArea');
 var answerAreaSection = document.querySelector('.answerArea');
 var endAreaSection = document.querySelector('.endArea');
-// var highScoresPageSection = document.querySelector('.highScorePage')
+var highScoresPageSection = document.querySelector('.highScoresPage')
 
 //never hidden: titleIntro, Header, 
 
@@ -32,7 +32,7 @@ var submitButton = document.getElementById('submitBtn');
 var submitScoreButton = document.getElementById('submitScoreBtn');
 var initialsSection = document.getElementById('initials');
 var scoreTitleSection = document.getElementById('scoreTitle');
-
+var yourScoreArea = document.getElementById('scoreYours');
 
 //-------value variables-------
 
@@ -81,22 +81,9 @@ const myQuestions = [
   ];
 
 
-//-----------Code:startUp------------
-
-
-
-
-//-----------Code:questions------------
-
-
-
-//-----------Code:endScreen------------
-
-
-
 //---------define functions---------
 
-
+//--------timer-----------
 function countdown() {
 
     var timeInterval = setInterval(function () {
@@ -114,13 +101,15 @@ function countdown() {
         timerEl.textContent = ' End';
         clearInterval(timeInterval);
         window.alert("you are out of time");
-        userScore.highScore = "Better Luck Next Time"
+        //// fix later
+        //userScore.highScore = "Better Luck Next Time"
         finalPage();
 
       }
     }, 1000);
   }
 
+//-----------when to show which sections---------
   function hideShowStart(){
 highScoreLink.style.display = 'block';
 TimerArea.style.display = 'block';
@@ -161,17 +150,19 @@ highScoresPageSection.style.display = 'none';
     highScoresPageSection.style.display = 'block';
   }
 
+  //----- player's results--------
 function finalPage(){
 ///add countdown stopping
-
+/////////////RONNNNNNNY/////////////
     endTime = timeLeft  ////fix it to work
     titleBlockVar.textContent = "All Done!";
-   if(userScore.highScore = "Better Luck Next Time"){
-    var initialsArea = document.querySelector('.initialsArea');
-    initialsArea.style.display = 'none';
-    //// have button change from score submit to go back function
-    //// add anything else for you failed
-   }else{
+    ////fix later
+//    if(userScore.highScore = "Better Luck Next Time"){
+//     var initialsArea = document.querySelector('.initialsArea');
+//     initialsArea.style.display = 'none';
+//     //// have button change from score submit to go back function
+//     //// add anything else for you failed
+//    }else{
    var userInitials = (document.getElementById('initials').value)
     if (userInitials == null) {
             alert("You need to fill out your initials!");
@@ -180,22 +171,25 @@ function finalPage(){
         console.log(userInitials)
         userScore.name = userInitials,
 ////retrieve countdown stopped value to create highscore
-        userScore.highScore = endTime //10
+        userScore.highScore =  10 //endTime
       initialsSection.textContent = userScore.name;
       scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
     }
     // set new submission to local storage 
+/////////////RONNNNNNNY/////////////
         var highScoreRecord = JSON.stringify(userScore);
-    //console.log(highScoreRecord);
+    //put into storage;
         localStorage.setItem("lastUser", highScoreRecord);
+    // add to high scores array "userScoreSets" in storage for high scores page later
         userScoreSets.push(userScore)
-        ////Do I need to add something here to pull highScoreRecord too for highschores page?
         console.log(lastUser)
         console.log(userScore)
     //console.log(userScoreSets)
     return userScoreSets;
-   }
+   //}
 }
+
+//----- test is player picked the correct answer for each question
 
 function answerCreation(){
 var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
@@ -230,6 +224,8 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
     displayQuestion()
 }
 
+//-------what question to pull from array---------
+
 function displayQuestion() {
     if(i < 3){
     titleBlockVar.textContent = myQuestions[i].question;
@@ -243,18 +239,26 @@ function displayQuestion() {
    }
   }
 
+  //--------------highscores page------------
   function highScoresPage(){
     hideShowHighScores()
         titleBlockVar.textContent = " ✨ High Scores ✨ ";
-       //// pull in local storage answers
+      
+ /////////////RONNNNNNNY/////////////
+           //// pull in local storage answers //players and overall highscores array 
+        localStorage.getItem(userScore)
+        localStorage.getItem(userScoreSets)
+            //// fill in the line with current player score
+        //do I need to unstringify??
+           yourScoreArea.textContent = ("congrats" + userScore.name + "your score is: " + userScore.highscore)
+           console.log(yourScoreArea)
 
-        //// fill in the line with current player score
+           //I'll do the buttons and such later//
+            ////create div elements to list all the high scores from overallscores array
 
-       ////create div elements to list all the high scores from overallscores array
+            //// Go Back button
 
-        //// Go Back button
-
-        //// clear all scores button
+            //// clear all scores button
 
     }
 
