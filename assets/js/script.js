@@ -13,7 +13,7 @@ var introSection = document.getElementById('introSummary');
 var startButtonSection = document.querySelector('.startButtonsArea');
 var answerAreaSection = document.querySelector('.answerArea');
 var endAreaSection = document.querySelector('.endArea');
-// var highScoresPageSection = document.querySelector('.highScorePage')
+var highScoresPageSection = document.querySelector('.highScorePage');
 
 //never hidden: titleIntro, Header, 
 
@@ -32,7 +32,9 @@ var submitButton = document.getElementById('submitBtn');
 var submitScoreButton = document.getElementById('submitScoreBtn');
 var initialsSection = document.getElementById('initials');
 var scoreTitleSection = document.getElementById('scoreTitle');
-
+var goBackBtn = document.querySelector('#goBack');
+var clearScoresBtn = document.querySelector('#clearcores');
+var yourScoresArea = document.querySelector('#scoreYours');
 
 //-------value variables-------
 
@@ -79,47 +81,11 @@ const myQuestions = [
       correctAnswer: "D"
     }
   ];
-
-
-//-----------Code:startUp------------
-
-
-
-
-//-----------Code:questions------------
-
-
-
-//-----------Code:endScreen------------
-
-
+////add more questions
 
 //---------define functions---------
 
-
-function countdown() {
-
-    var timeInterval = setInterval(function () {
-      // the timer still has more than 1 second and states "# of seconds remaining"
-      if (timeLeft > 1) {
-        timerEl.textContent = ' ' + timeLeft + ' seconds remaining';
-        timeLeft--;
-      } // the timer is at one second and states "1 second" remaining"
-      else if (timeLeft === 1) {
-        timerEl.textContent = ' ' + timeLeft + ' second remaining';
-        timeLeft--;
-        
-      } // timer is out of time the function stops, and calls display message function
-      else {
-        timerEl.textContent = ' End';
-        clearInterval(timeInterval);
-        window.alert("you are out of time");
-        userScore.highScore = "Better Luck Next Time"
-        finalPage();
-
-      }
-    }, 1000);
-  }
+//-----------hide show pages functions-----
 
   function hideShowStart(){
 highScoreLink.style.display = 'block';
@@ -161,6 +127,103 @@ highScoresPageSection.style.display = 'none';
     highScoresPageSection.style.display = 'block';
   }
 
+
+//--------main functions-----------
+
+//------timer--------
+function countdown() {
+
+    var timeInterval = setInterval(function () {
+      // the timer still has more than 1 second and states "# of seconds remaining"
+      if (timeLeft > 1) {
+        timerEl.textContent = ' ' + timeLeft + ' seconds remaining';
+        timeLeft--;
+      } // the timer is at one second and states "1 second" remaining"
+      else if (timeLeft === 1) {
+        timerEl.textContent = ' ' + timeLeft + ' second remaining';
+        timeLeft--;
+        
+      } // timer is out of time the function stops, and calls display message function
+      else {
+        timerEl.textContent = ' End';
+        clearInterval(timeInterval);
+        window.alert("you are out of time");
+        userScore.highScore = "Better Luck Next Time"
+        finalPage();
+
+      }
+    }, 1000);
+  }
+
+//--------questions---------
+function displayQuestion() {
+    if(i < 3){
+    titleBlockVar.textContent = myQuestions[i].question;
+    answer1Button.textContent = myQuestions[i].answers.a;
+    answer2Button.textContent = myQuestions[i].answers.b;
+    answer3Button.textContent = myQuestions[i].answers.c;
+    answer4Button.textContent = myQuestions[i].answers.d;
+    ////need to move to next level i
+      }else{
+        hideShowEnd();        
+   }
+  }
+
+  function answerCreation(){
+    var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
+      console.log(answerOptions);
+       var answerA = (document.getElementById('answer1Select').checked);
+       var answerB = (document.getElementById('answer2Select').checked);
+       var answerC = (document.getElementById('answer3Select').checked);
+       var answerD = (document.getElementById('answer4Select').checked);
+       if(answerA ==true){
+           answerNow = "A";
+       }else if(answerB == true){
+           answerNow = "B";
+       }else if(answerC == true){
+           answerNow = "C";
+        }else if(answerD == true){
+            answerNow = "D";
+        }else{window.alert("must select one answer")};
+        // answerSet.questionID = (i + 1),
+        // answerSet.a = answerA,
+        // answerSet.b = answerB,
+        // answerSet.c = answerC,
+        // answerSet.d = answerD,
+        if(myQuestions[i].correctAnswer === answerNow){
+            rightWrong = rightWrong
+                i++}
+            else{rightWrong = (rightWrong + 1)
+                ////add to minus 10 seconds from timer //
+                timeLeft = (timeLeft - 10)}
+        //console.log(answerSet)
+        console.log(rightWrong)
+      
+        displayQuestion()
+    }
+
+    //-------- high scores page after score submission--------
+
+  function highScoresPage(){
+    hideShowHighScores()
+//         titleBlockVar.textContent = " ✨ High Scores ✨ ";
+//        //// pull in local storage answers
+// localStorage.getItem("yourScoreResults",userScore);
+// //do I need to unstringify or just call user int and high score instead?
+// yourScoresArea.textContent = userScore.name + ' your score is: ' + userScore.highScore
+// console.log(yourScoresArea)
+//         //// fill in the line with current player score
+
+//        ////create div elements to list all the high scores from overallscores array
+
+//         //// Go Back button
+// //I think the addeventlistener will take care of this
+//         //// clear all scores button
+// //add reset local storage code
+    }
+
+//--------players current results submission-------
+
 function finalPage(){
 ///add countdown stopping
 
@@ -180,7 +243,7 @@ function finalPage(){
         console.log(userInitials)
         userScore.name = userInitials,
 ////retrieve countdown stopped value to create highscore
-        userScore.highScore = endTime //10
+        userScore.highScore =  10 //endTime
       initialsSection.textContent = userScore.name;
       scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
     }
@@ -193,70 +256,13 @@ function finalPage(){
         console.log(lastUser)
         console.log(userScore)
     //console.log(userScoreSets)
-    return userScoreSets;
+    //return userScoreSets;
+    highScoresPage();
    }
 }
 
-function answerCreation(){
-var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
-  console.log(answerOptions);
-   var answerA = (document.getElementById('answer1Select').checked);
-   var answerB = (document.getElementById('answer2Select').checked);
-   var answerC = (document.getElementById('answer3Select').checked);
-   var answerD = (document.getElementById('answer4Select').checked);
-   if(answerA ==true){
-       answerNow = "A";
-   }else if(answerB == true){
-       answerNow = "B";
-   }else if(answerC == true){
-       answerNow = "C";
-    }else if(answerD == true){
-        answerNow = "D";
-    }else{window.alert("must select one answer")};
-    // answerSet.questionID = (i + 1),
-    // answerSet.a = answerA,
-    // answerSet.b = answerB,
-    // answerSet.c = answerC,
-    // answerSet.d = answerD,
-    if(myQuestions[i].correctAnswer === answerNow){
-        rightWrong = rightWrong
-            i++}
-        else{rightWrong = (rightWrong + 1)
-            ////add to minus 10 seconds from timer //
-            timeLeft = (timeLeft - 10)}
-    //console.log(answerSet)
-    console.log(rightWrong)
-  
-    displayQuestion()
-}
 
-function displayQuestion() {
-    if(i < 3){
-    titleBlockVar.textContent = myQuestions[i].question;
-    answer1Button.textContent = myQuestions[i].answers.a;
-    answer2Button.textContent = myQuestions[i].answers.b;
-    answer3Button.textContent = myQuestions[i].answers.c;
-    answer4Button.textContent = myQuestions[i].answers.d;
-    ////need to move to next level i
-      }else{
-        hideShowEnd();        
-   }
-  }
 
-  function highScoresPage(){
-    hideShowHighScores()
-        titleBlockVar.textContent = " ✨ High Scores ✨ ";
-       //// pull in local storage answers
-
-        //// fill in the line with current player score
-
-       ////create div elements to list all the high scores from overallscores array
-
-        //// Go Back button
-
-        //// clear all scores button
-
-    }
 
 //---------------Add event listener-----------
 hideShowStart();
@@ -266,6 +272,13 @@ startButton.addEventListener("click", displayQuestion);
 submitButton.addEventListener("click", answerCreation);
 submitScoreButton.addEventListener("click", finalPage);
 
+// //not sure if that will work
+// function startBtnAll(){
+//     countdown();
+//     hideShowMain();
+//     displayQuestion();
+// }
+// goBackBtn.addEventListener("click",startBtnAll);
 
 
 
