@@ -34,6 +34,8 @@ var initialsSection = document.getElementById('initials');
 var scoreTitleSection = document.getElementById('scoreTitle');
 var yourScoreArea = document.getElementById('scoreYours');
 var wrongAnswerArea = document.getElementById('wrongAnswer');
+var goBackButton = document.querySelector('.goBack');
+var clearScoresButton = document.querySelector('.clearScores');
 
 //-------value variables-------
 
@@ -44,6 +46,8 @@ var answerSet = {};
 var rightWrong = 0;
 var timeLeft = 180;
 var endTime = "";
+var userInitials = ""
+var highScoreResult = ""
 ////figure out how to clear answer set Name so it returns to starting at name = 1
 
 
@@ -101,10 +105,10 @@ function countdown() {
       else {
         timerEl.textContent = ' End';
         clearInterval(timeInterval);
-        window.alert("you are out of time");
+        
         //// fix later
         //userScore.highScore = "Better Luck Next Time"
-        finalPage();
+        failedPage();
 
       }
     }, 1000);
@@ -112,6 +116,7 @@ function countdown() {
 
 //-----------when to show which sections---------
   function hideShowStart(){
+    wrongAnswerArea.textContent = " "
 highScoreLink.style.display = 'block';
 TimerArea.style.display = 'block';
 introSection.style.display = 'block';
@@ -152,6 +157,20 @@ highScoresPageSection.style.display = 'none';
   }
 
   //----- player's results--------
+
+  //------If you run out of time page--------
+  function failedPage(){
+    highScoreLink.style.display = 'none';
+    TimerArea.style.display = 'block';
+    introSection.style.display = 'none';
+    startButtonSection.style.display = 'none';
+    answerAreaSection.style.display = 'none';
+    endAreaSection.style.display = 'none';
+    highScoresPageSection.style.display = 'none';
+    titleBlockVar.textContent = "You are Out of Time"
+    wrongAnswerArea.textContent = "Refresh and Try Again"
+  }
+
 function finalPage(){
 ///add countdown stopping
 /////////////RONNNNNNNY/////////////
@@ -166,15 +185,16 @@ function finalPage(){
 //     //// have button change from score submit to go back function
 //     //// add anything else for you failed
 //    }else{
-   var userInitials = (document.getElementById('initials').value)
+   userInitials = (document.getElementById('initials').value)
     if (userInitials == null) {
             alert("You need to fill out your initials!");
             finalPage();
     }else{
-        console.log(userInitials)
+        //console.log(userInitials)
         userScore.name = userInitials,
-////retrieve countdown stopped value to create highscore
-        userScore.highScore =  10 //endTime
+////retrieve countdown stopped value to create highscore //endTime
+        highScoreResult = 10   //placeholder
+        userScore.highScore =  highScoreResult 
       initialsSection.textContent = userScore.name;
       scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
     }
@@ -185,7 +205,7 @@ function finalPage(){
         localStorage.setItem("lastUser", highScoreRecord);
     // add to high scores array "userScoreSets" in storage for high scores page later
         userScoreSets.push(userScore)
-        console.log(lastUser)
+        console.log(highScoreRecord)
         console.log(userScore)
     //console.log(userScoreSets)
     return userScoreSets;
@@ -230,7 +250,7 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
             wrongAnswerArea.textContent = "Incorrect"
         }
     //console.log(answerSet)
-    console.log(rightWrong)
+    //console.log(rightWrong)
   
     displayQuestion()
 }
@@ -262,17 +282,42 @@ function displayQuestion() {
         localStorage.getItem(userScoreSets)
             //// fill in the line with current player score
         //do I need to unstringify??
-           yourScoreArea.textContent = ("congrats " + userScore.name + " your score is: " + userScore.highscore)
+           yourScoreArea.textContent = ("Congrats " + userScore.name + " your score is: " + userScore.highScore)
            console.log(yourScoreArea)
 
-           //I'll do the buttons and such later//
+
+           ////sort userScoreSets by highest to lowest userscore.highscore
+
+
             ////create div elements to list all the high scores from overallscores array
-
-            //// Go Back button
-
-            //// clear all scores button
+           ////no idea if this is correct
+            var listScores = document.querySelector(".highScoresList");
+            var c = 0
+            while(c >userScoreSets.length){
+              var li1 = document.createElement("li");
+              listScores.appendChild(li1);
+              c++
+            }
 
     }
+
+
+                //// Go Back button
+            function goBack(){
+              location.reload();
+            }
+
+            //// clear all scores button -- clear local storage
+            function clearScores(){
+              localStorage.clear();
+              location.reload();
+            }
+
+            function highScoresPageNoResults(){
+              highScoresPage();
+              yourScoreArea.style.display = 'none'
+
+            }
 
 //---------------Add event listener-----------
 hideShowStart();
@@ -281,6 +326,9 @@ startButton.addEventListener("click", hideShowMain);
 startButton.addEventListener("click", displayQuestion);
 submitButton.addEventListener("click", answerCreation);
 submitScoreButton.addEventListener("click", highScoresPage);
+goBackButton.addEventListener("click", goBack);
+clearScoresButton.addEventListener("click", clearScores);
+highScoreLink.addEventListener("click",highScoresPageNoResults)
 
 
 

@@ -18,7 +18,7 @@
 <!--headline with quicklinks, present on all papges-->
         <header class="header" id="header">
             <div>
-                <a class = "leftHeader" href="HighScores.html">View High Scores</a>
+                <a class = "leftHeader">View High Scores</a>
             </div>
             <div class="rightHeader" >
                 <a>⏳ Time Remaining :<span ID="countDown">180 seconds</span></a>
@@ -89,7 +89,19 @@
             <section class = "highScoresPage">
                 <article class="scores" class="scoreYours" id="scoreYours">
                     <h3 id="scoreYours"></h3>
-            </article>
+                </article>
+                <article class="scores" class="scoresAdd">
+                    <ul class = "highScoresList">
+                        <!-- example: <li>score 1</li> -->
+
+                    </ul>
+                </article>
+                <div class="buttons">
+                    <button class = "goBack" btn="goBack" class="purplePinkBtn">Go Back</button>
+                </div>
+                <div class="clearBtn">
+                    <button class = "clearScores" btn="clearScores" class="purplePinkBtn">Clear High Scores</button>
+                </div>
             </section>
 
         </main>
