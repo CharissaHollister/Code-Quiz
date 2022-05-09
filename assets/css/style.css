@@ -21,9 +21,6 @@
 }
 
 /*general selectors*/
-.left-align {
-  justify-content: left;
-}
 
 .purplePink {
   border-radius: 5px;
@@ -78,6 +75,13 @@ header {
   color: black;
 }
 
+.submitBtn, .submitScoreBtnArea, .goBackArea{
+  padding-top:25px;
+}
+
+.scoreYours{
+  margin-top: 25px}
+  
 /*all of main sections*/
 main {
   width: 60vw;
