@@ -39,7 +39,10 @@ var clearScoresButton = document.querySelector('#clearScores');
 
 //-------value variables-------
 
-var userScore = {};
+var userScore = {
+  // name: "",
+  // highScore: ""
+};
 var userScoreSets = []; //need to pull in from local storage
 var i = 0;
 var answerSet = {};
@@ -177,42 +180,7 @@ function finalPage(){
 ////how to capture the time at the moment of quiz ending
     endTime = timeLeft  ////fix it to work :(
 
-    
     titleBlockVar.textContent = "All Done!";
-    ////fix later
-//    if(userScore.highScore = "Better Luck Next Time"){
-//     var initialsArea = document.querySelector('.initialsArea');
-//     initialsArea.style.display = 'none';
-//     //// have button change from score submit to go back function
-//     //// add anything else for you failed
-//    }else{
-   userInitials = (document.getElementById('initials').value)
-    if (userInitials == null) {
-            alert("You need to fill out your initials!");
-            finalPage();
-    }else{
-        //console.log(userInitials)
-        userScore.name = userInitials,
-////retrieve countdown stopped value to create highscore //endTime
-        highScoreResult = 10   //placeholder
-        userScore.highScore =  highScoreResult 
-      initialsSection.textContent = userScore.name;
-      scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
-    }
-    // set new submission to local storage 
-/////////////RONNNNNNNY/////////////
-        var highScoreRecord = JSON.stringify(userScore);
-    //put into storage;
-        localStorage.setItem("lastUser", highScoreRecord);
-    // add to high scores array "userScoreSets" in storage for high scores page later
-        userScoreSets.push(userScore)
-        console.log(highScoreRecord)
-        console.log(userScore)
-        console.log(userScoreSetsgit )
-        console.log(lastUser)
-    //console.log(userScoreSets)
-    return userScoreSets;
-   //}
 }
 
 //----- test is player picked the correct answer for each question
@@ -277,26 +245,45 @@ function displayQuestion() {
 
   //--------------highscores page------------
   function highScoresPage(){
+    //grab initials from final page
+    userInitials = (document.getElementById('initials').value)
+    if (userInitials == null) {
+            alert("You need to fill out your initials!");
+            finalPage();
+    }else{
+        //console.log(userInitials)
+        userScore.name = userInitials,
+////retrieve countdown stopped value to create highscore //endTime
+        highScoreResult = 10   //placeholder
+        userScore.highScore =  highScoreResult 
+      //initialsSection.textContent = userScore.name;
+      scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
+    }
+    //put into storage;
+        localStorage.setItem("userScore", JSON.stringify(userScore));
+// /////////////RONNNNNNNY///////////// add new score to array
+        // add to high scores array "userScoreSets" in storage for high scores page later
+        userScoreSets.push(userScore)
+        //localStorage.setItem("userScoreSets", userScoreSets.push(userScore));
+        //console.log(highScoreRecord)
+        console.log(userScore)
+        console.log(userScoreSets)
+
     hideShowHighScores()
         titleBlockVar.textContent = " ✨ High Scores ✨ ";
       
- /////////////RONNNNNNNY/////////////
+ /////////////RONNNNNNNY///////////// pull in all of userscore sets + array length
            //// pull in local storage answers //players and overall highscores array 
-        localStorage.getItem(userScore)
-        localStorage.getItem(userScoreSets)
-        console.log(userScore)
+        //userScore = JSON.parse(localStorage.getItem(userScore))
+        userScoreSets = JSON.parse(localStorage.getItem(userScoreSets))
+       // console.log(userScore)
         console.log(userScoreSets)
-            //// fill in the line with current player score
-        //do I need to unstringify??
            yourScoreArea.textContent = ("Congrats " + userScore.name + " your score is: " + userScore.highScore)
-           console.log(yourScoreArea)
-
-
-           ////sort userScoreSets by highest to lowest userscore.highscore
-
+        
+////sort userScoreSets by highest to lowest userscore.highscore
 
             ////create div elements to list all the high scores from overallscores array
-           ////no idea if this is correct
+           ////no idea if this is correct, fix later
             var listScores = document.querySelector(".highScoresList");
             var c = 0
             while(c >userScoreSets.length){
