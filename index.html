@@ -5,114 +5,166 @@
 <!---****************************--->
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Code Quiz - Javascript</title>
-        
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <!--favicon-->
-        <link  rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon1.png">
-    </head>
-    <body>
-<!--headline with quicklinks, present on all papges-->
-        <header class="header" id="header">
-            <div>
-                <a class = "leftHeader">View High Scores</a>
-            </div>
-            <div class="rightHeader" >
-                <a>⏳ Time Remaining :<span ID="countDown">180 seconds</span></a>
-            </div>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Code Quiz - Javascript</title>
 
-<!--Starting page; hide after starting quiz-->
-        <main>
-            <!-- startPage -->
-            <section class ="titleIntro">
-                <!--Title Block,used on all pages-->
-            <div id = "titleBlock">
-                <!--will get replaced with questions then "All Done!"-->
-                Code Quiz Challenge!
-            </div>
-                <!--hide after start-->
-            <div id = "introSummary" class="summary">
-                Try to answer the following code-related questions within the time limit.
-                Keep in mind the incorrect answers will penalize your score/time 
-                by ten seconds! Happy Coding!
-            </div>
-            </section>
-                <!--hide after start-->
-            <section class="startButtonsArea" class="buttons" >
-                <button id="startQuiz" class="purplePinkBtn">Start Quiz</button>
-            </section>
-            <!-- answersPge -->
-            <section class = "answerArea">
-                <!--hide at start and again at end-->
-                <article class="answers">
-                    <input type="radio" class = "radios" id="answer1Select" name="answerSelect"/><h3 class="purplePink" id="answer1"></h3>
-                </article>
-                <article class="answers">
-                    <input type="radio" class = "radios" id="answer2Select" name="answerSelect"/><h3 class="purplePink" id="answer2"></h3>
-                </article>
-                <article class="answers">
-                    <input type="radio" class = "radios" id="answer3Select" name="answerSelect"/><h3 class="purplePink" id="answer3"></h3>
-                </article>
-                <article class="answers">
-                    <input type="radio" class = "radios" id="answer4Select" name="answerSelect"/><h3 class="purplePink" id="answer4"></h3>
-                </article>
-            <div class="submitBtn" class="buttons">
-                <button id="submitBtn" class="purplePinkBtn">Submit</button>
-            </div>
-                <!--empty then displays Wrong or Correct-->
-            <!-- <div class="rightWrong"> 
-            </div> -->
-            </section>
-                <!--hide until end, starts enter 
-                    initials then fills in with user input-->
-                    <!-- final page -->
-            <section class="endArea">
-                <div class="initialsArea">
-                    <form class="initials">
-                        <label for = "initialsEntry">Intials: </label>
-                        <input id="initials"type="text"  name = "initialsEntry" placeholder="Enter Your Initials Here"/>
-                    </form>
-                </div>
-                <div id= "endSummary" class="summary">
-                    <div id="scoreTitle" id="endScore">Your Score is</div>
-                </div>
-                <div class="submitScoreBtnArea" class="buttons">
-                    <button id="submitScoreBtn" class="purplePinkBtn">Score Submit</button>
-                </div>
-            </section>
-
-            <!-- highScoresPage -->
-            <section class = "highScoresPage">
-                <article class="scores scoreYours" id="scoreYours">
-                    <h3 id="scoreYours"></h3>
-                </article>
-                <article class="scores" class="scoresAdd">
-                    <ul class = "highScoresList">
-                        <!-- example: <li>score 1</li> -->
-
-                    </ul>
-                </article>
-                <div class= "goBackArea buttons">
-                    <button class="purplePinkBtn" class = "goBack" id="goBack" class="purplePinkBtn">Go Back</button>
-                </div>
-                <div class="clearBtn">
-                    <button class="purplePinkBtn" class = "clearScores" id="clearScores" >Clear High Scores</button>
-                </div>
-            </section>
-
-        </main>
-
-        <footer>
-            <h4 id="wrongAnswer"></h4>
-        </footer>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!--favicon-->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon1.png"
+    />
+  </head>
+  <body>
+    <!--headline with quicklinks, present on all papges except highscores/failed-->
+    <header class="header" id="header">
+      <div>
+        <a class="leftHeader">View High Scores</a>
+      </div>
+      <div class="rightHeader">
+        <a>⏳ Time Remaining :<span ID="countDown">180 seconds</span></a>
+      </div>
+    </header>
 
 
+    <!------------Opening Screen------->
+    <main>
+      <!-- startPage -->
+      <section class="titleIntro">
+        <!--Title Block, present on all papges-->
+        <div id="titleBlock">
+          Code Quiz Challenge!
+        </div>
+        <!--subtitle area -- present on start and end papges-->
+        <div id="introSummary" class="summary">
+          Try to answer the following code-related questions within the time
+          limit. Keep in mind the incorrect answers will penalize your
+          score/time by ten seconds! Happy Coding!
+        </div>
+      </section>
+      <!--start quiz button-->
+      <section class="startButtonsArea" class="buttons">
+        <button id="startQuiz" class="purplePinkBtn">Start Quiz</button>
+      </section>
 
-        <script src="./assets/js/script.js"></script>
-    </body>
+
+      <!------------Questions Pages-------- -->
+
+      <!-- question held inside title block -->
+      <!-- answers area with 4 options selected by radio button -->
+      <section class="answerArea">
+        <article class="answers">
+          <input
+            type="radio"
+            class="radios"
+            id="answer1Select"
+            name="answerSelect"
+          />
+          <h3 class="purplePink" id="answer1"></h3>
+        </article>
+        <article class="answers">
+          <input
+            type="radio"
+            class="radios"
+            id="answer2Select"
+            name="answerSelect"
+          />
+          <h3 class="purplePink" id="answer2"></h3>
+        </article>
+        <article class="answers">
+          <input
+            type="radio"
+            class="radios"
+            id="answer3Select"
+            name="answerSelect"
+          />
+          <h3 class="purplePink" id="answer3"></h3>
+        </article>
+        <article class="answers">
+          <input
+            type="radio"
+            class="radios"
+            id="answer4Select"
+            name="answerSelect"
+          />
+          <h3 class="purplePink" id="answer4"></h3>
+        </article>
+        <!-- submit button to check answer  -->
+        <div class="submitBtn" class="buttons">
+          <button id="submitBtn" class="purplePinkBtn">Submit</button>
+        </div>
+        <!--footer displays Wrong or Correct-->
+      </section>
+
+
+      <!------------ final results page ------------------>
+      <section class="endArea">
+          <!-- user enters initials to be stored in local storage -->
+        <div class="initialsArea">
+          <form class="initials">
+            <label for="initialsEntry">Intials: </label>
+            <input
+              id="initials"
+              type="text"
+              name="initialsEntry"
+              placeholder="Enter Your Initials Here"
+            />
+          </form>
+        </div>
+        <!-- display current users score  -->
+        <div id="endSummary" class="summary">
+          <div id="scoreTitle" id="endScore">Your Score is</div>
+        </div>
+        <!-- submit scores to local storage by player  -->
+        <div class="submitScoreBtnArea" class="buttons">
+          <button id="submitScoreBtn" class="purplePinkBtn">
+            Score Submit
+          </button>
+        </div>
+      </section>
+
+      <!----------- highScoresPage ------------------>
+      <section class="highScoresPage">
+          <!-- current players score on the top for easy comparison  -->
+        <article class="scores scoreYours" id="scoreYours">
+          <h3 id="scoreYours"></h3>
+        </article>
+        <!-- display of complete local storage scores  -->
+        <article class="scores" class="scoresAdd">
+          <ul class="highScoresList">
+            <!-- local storage list created in js: <li>score 1</li> -->
+          </ul>
+        </article>
+        <!-- button to return to the start  -->
+        <div class="goBackArea buttons">
+          <button
+            class="purplePinkBtn"
+            class="goBack"
+            id="goBack"
+            class="purplePinkBtn"
+          >
+            Go Back
+          </button>
+        </div>
+        <!-- button to clear the local storage -->
+        <div class="clearBtn">
+          <button class="purplePinkBtn" class="clearScores" id="clearScores">
+            Clear High Scores
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- /*----------footer- gives messages during game--------*/ -->
+    <footer>
+      <h4 id="wrongAnswer"></h4>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>

@@ -20,7 +20,7 @@
   color: white;
   background-color: rgb(47, 11, 140);
   padding: 0 25px;
-  margin: 10px ;
+  margin: 10px;
   min-width: 25vw;
 }
 
@@ -38,8 +38,11 @@
 }
 
 /*button area spacing*/
-.submitBtn, .submitScoreBtnArea, .goBackArea, .clearBtn{
-  padding-top:25px;
+.submitBtn,
+.submitScoreBtnArea,
+.goBackArea,
+.clearBtn {
+  padding-top: 25px;
   margin-left: 15vw;
 }
 
@@ -77,8 +80,6 @@ header {
   color: black;
 }
 
-
-
 /*---------all of main sections-----------*/
 main {
   width: 60vw;
@@ -96,31 +97,28 @@ main {
   padding: 20px 10vw;
 }
 
-
-
 /*-------------questions Page----------------*/
 
 /*answer boxes*/
-.answers{
+.answers {
   display: flex;
-  margin-left: 30vw;
+  /* margin-left: 30vw; */
   align-items: center;
 }
 
 /*overall answer area{} */
 
 /*radio buttons to pick correct answer*/
-.radios{
- margin-right: 15px;
+.radios {
+  margin-right: 15px;
 }
-
 
 /*-------------Final Page----------------*/
 
 /*user enters initials at the end*/
 .initials {
   font-size: 20px;
-  font-weight:bold;
+  font-weight: bold;
 }
 .initials::before {
   color: lightslategray;
@@ -130,15 +128,16 @@ main {
   color: black;
 }
 
-.endArea{
+.endArea {
+  width: 60vw;
+  margin-right: 20vw;
   display: block;
 }
 
-#scoreTitle{
+#scoreTitle {
   font-size: 16px;
-  font-weight:bold;
+  font-weight: bold;
 }
-
 
 /*-------------high scores Page----------------*/
 
@@ -147,14 +146,13 @@ main {
   text-align: left;
   justify-content: center;
   width: 30vw;
-  padding:5px;
-  margin:10px;
+  padding: 5px;
+  margin: 10px;
   margin-left: 15vw;
-
 }
 
 /*current player's results*/
-#scoreYours{
+#scoreYours {
   margin-top: 25px;
   padding: 2px 20px;
   width: 40vw;
@@ -164,7 +162,7 @@ main {
 }
 
 /*appended list of all past results in local storage*/
-.pastScores{
+.pastScores {
   color: rgb(101, 86, 86);
   font-weight: bolder;
   width: 30vw;
@@ -175,54 +173,52 @@ main {
   background-color: lightgray;
 }
 
-
-/*----------footer- gives messages during questions--------*/
-footer{
+/*----------footer- gives messages during game--------*/
+footer {
   padding: 20px;
   width: 60vw;
   margin-left: 20vw;
-    text-align: center;
-    font-size: 30px;
+  text-align: center;
+  font-size: 30px;
   color: grey;
 }
 
-
-
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
+  main {
+    width: 90vw;
+    margin-left: 5vw;
+  }
 
-main {
-  width: 90vw;
-  margin-left: 5vw;
-}
+  #titleBlock {
+    text-align: center;
+    font-size: 25px;
+  }
+  .summary {
+    font-size: 12px;
+    padding: 20px 0;
+  }
 
-#titleBlock {
-  text-align: center;
-  font-size: 25px;
-}
-.summary {
-  font-size: 12px;
-  padding: 20px 0;
-}
-
-.header a{
-  font-size: 14px;
-  padding: 15px;
-  padding-left: 30px;
-}
-.initials, #scoreTitle {
-  font-size: 14px;
-}
-.answerArea{
-  font-size: 10px;
-}
-.scores {
-  margin-left: 15vw;
-  width: 60vw;
-}
-.initialsArea, #endSummary{
-  display: block;
-}
+  .header a {
+    font-size: 14px;
+    padding: 15px;
+    padding-left: 30px;
+  }
+  .initials,
+  #scoreTitle {
+    font-size: 14px;
+  }
+  .answerArea {
+    font-size: 10px;
+  }
+  .scores {
+    margin-left: 15vw;
+    width: 60vw;
+  }
+  .initialsArea,
+  #endSummary {
+    display: block;
+  }
 }
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
