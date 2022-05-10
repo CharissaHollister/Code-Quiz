@@ -10,24 +10,18 @@
 }
 
 /*variables*/
-
-:root {
-  --primary-color: #e56fea;
-  --secondary-color: ivory;
-  --bg-color: #2a607c;
-  --bg-color2: #0076c6;
-  --padding: 20px;
-  --blur: 10px;
-}
+/* :root {} */
 
 /*general selectors*/
 
 .purplePink {
   border-radius: 5px;
+  justify-content: left;
   color: white;
   background-color: rgb(47, 11, 140);
   padding: 0 25px;
-  margin: 10px 15vw;
+  margin: 10px ;
+  min-width: 25vw;
 }
 
 .purplePinkBtn {
@@ -43,7 +37,15 @@
   background-color: rgb(122, 69, 134);
 }
 
-/*--headline with quicklinks*/
+/*button area spacing*/
+.submitBtn, .submitScoreBtnArea, .goBackArea, .clearBtn{
+  padding-top:25px;
+  margin-left: 15vw;
+}
+
+/*-------------header area----------------*/
+
+/*--headline with quicklinks. used every page but highscores*/
 header {
   display: flex;
   width: 100vw;
@@ -56,7 +58,7 @@ header {
   z-index: 9999;
 }
 
-/*HighScores*/
+/*HighScores link in header*/
 .leftHeader {
   color: rgb(122, 69, 134);
   text-decoration: none;
@@ -70,19 +72,14 @@ header {
   text-shadow: 0 0 10px;
 }
 
-/*time*/
+/*time in header*/
 .rightHeader {
   color: black;
 }
 
-.submitBtn, .submitScoreBtnArea, .goBackArea{
-  padding-top:25px;
-}
 
-.scoreYours{
-  margin-top: 25px}
-  
-/*all of main sections*/
+
+/*---------all of main sections-----------*/
 main {
   width: 60vw;
   margin-left: 20vw;
@@ -99,34 +96,26 @@ main {
   padding: 20px 10vw;
 }
 
-.initialsArea, #endSummary{
-  display: inline-block;
-  justify-content: center;
-}
-#scoreTitle{
-  font-size: 16px;
-  font-weight:bold;
-}
 
-.scores {
-  text-align: left;
-  margin-left: 18vw;
-  width: 25vw;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: lightgray;
-  color: black;
-}
 
-/*subsection unique attributes*/
+/*-------------questions Page----------------*/
+
+/*answer boxes*/
 .answers{
-    display: flex;
+  display: flex;
+  margin-left: 30vw;
+  align-items: center;
 }
 
-/*//// figure out how to move radios to the right next to h3s*/
-.answerArea input{
-padding-left: 20vw;
+/*overall answer area{} */
+
+/*radio buttons to pick correct answer*/
+.radios{
+ margin-right: 15px;
 }
+
+
+/*-------------Final Page----------------*/
 
 /*user enters initials at the end*/
 .initials {
@@ -141,7 +130,53 @@ padding-left: 20vw;
   color: black;
 }
 
-/*footer*/
+.endArea{
+  display: block;
+}
+
+#scoreTitle{
+  font-size: 16px;
+  font-weight:bold;
+}
+
+
+/*-------------high scores Page----------------*/
+
+/*all score boxes*/
+.scores {
+  text-align: left;
+  justify-content: center;
+  width: 30vw;
+  padding:5px;
+  margin:10px;
+  margin-left: 15vw;
+
+}
+
+/*current player's results*/
+#scoreYours{
+  margin-top: 25px;
+  padding: 2px 20px;
+  width: 40vw;
+  color: black;
+  font-weight: bolder;
+  background-color: lightgray;
+}
+
+/*appended list of all past results in local storage*/
+.pastScores{
+  color: rgb(101, 86, 86);
+  font-weight: bolder;
+  width: 30vw;
+  list-style: none;
+  font-style: italic bold;
+  padding: 2px 20px;
+  margin: 8px;
+  background-color: lightgray;
+}
+
+
+/*----------footer- gives messages during questions--------*/
 footer{
   padding: 20px;
   width: 60vw;
@@ -150,6 +185,7 @@ footer{
     font-size: 30px;
   color: grey;
 }
+
 
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
@@ -168,10 +204,7 @@ main {
   font-size: 12px;
   padding: 20px 0;
 }
-header {
-  padding: 15px 10px;
-  display: inline-block;
-}
+
 .header a{
   font-size: 14px;
   padding: 15px;

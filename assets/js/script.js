@@ -31,8 +31,8 @@ var answer4Button = document.querySelector('#answer4');
 var submitButton = document.getElementById('submitBtn');
 var submitScoreButton = document.getElementById('submitScoreBtn');
 var initialsSection = document.getElementById('initials');
-var scoreTitleSection = document.getElementById('scoreTitle');
-var yourScoreArea = document.getElementById('scoreYours');
+// var scoreTitleSection = document.getElementById('scoreTitle');
+// var yourScoreArea = document.getElementById('scoreYours');
 var wrongAnswerArea = document.getElementById('wrongAnswer');
 var goBackButton = document.querySelector('#goBack');
 var clearScoresButton = document.querySelector('#clearScores');
@@ -43,15 +43,22 @@ var userScore = {
   // name: "",
   // highScore: ""
 };
-var userScoreSets = []; //need to pull in from local storage
+var userScoreSets;
+var userScorePrev = localStorage.getItem("userScoreSets");
+if (userScorePrev) {
+  userScoreSets = JSON.parse(userScorePrev);
+} else {
+  userScoreSets = [];
+}
+
 var i = 0;
 var answerSet = {};
 var rightWrong = 0;
 var timeLeft = 180;
 var endTime = "";
-var userInitials = ""
-var highScoreResult = ""
-////figure out how to clear answer set Name so it returns to starting at name = 1
+var userInitials = "";
+var highScoreResult = "";
+var timeInterval;
 
 
 //-----------quiz questions array------------
@@ -93,8 +100,7 @@ const myQuestions = [
 
 //--------timer-----------
 function countdown() {
-
-    var timeInterval = setInterval(function () {
+   timeInterval = setInterval(function () {
       // the timer still has more than 1 second and states "# of seconds remaining"
       if (timeLeft > 1) {
         timerEl.textContent = ' ' + timeLeft + ' seconds remaining';
@@ -103,16 +109,11 @@ function countdown() {
       else if (timeLeft === 1) {
         timerEl.textContent = ' ' + timeLeft + ' second remaining';
         timeLeft--;
-        
       } // timer is out of time the function stops, and calls display message function
       else {
         timerEl.textContent = ' End';
         clearInterval(timeInterval);
-        
-        //// fix later
-        //userScore.highScore = "Better Luck Next Time"
         failedPage();
-
       }
     }, 1000);
   }
@@ -175,12 +176,11 @@ highScoresPageSection.style.display = 'none';
   }
 
 function finalPage(){
-///add countdown stopping
-/////////////RONNNNNNNY/////////////
-////how to capture the time at the moment of quiz ending
-    endTime = timeLeft  ////fix it to work :(
-
+//grabs time at quiz completion
+clearInterval(timeInterval);    
     titleBlockVar.textContent = "All Done!";
+    var scoreTitleSection = document.getElementById('scoreTitle');
+    scoreTitleSection.textContent = "Your Score is " + timeLeft;
 }
 
 //----- test is player picked the correct answer for each question
@@ -201,29 +201,21 @@ var answerOptions = document.querySelectorAll('input[name="answerSelect"]');
     }else if(answerD == true){
         answerNow = "D";
     }else{answerNow = null};
-    // answerSet.questionID = (i + 1),
-    // answerSet.a = answerA,
-    // answerSet.b = answerB,
-    // answerSet.c = answerC,
-    // answerSet.d = answerD,
     if(answerNow == null){wrongAnswerArea.textContent = "must select one answer"}
     else if(myQuestions[i].correctAnswer === answerNow){
         rightWrong = rightWrong
         wrongAnswerArea.textContent = ' '
-        //add how to add to uncheck radio buttons
+        // uncheck radio buttons
         answer1Select.checked = false;
         answer2Select.checked = false;
         answer3Select.checked = false;
         answer4Select.checked = false;
             i++}
-        else{rightWrong = (rightWrong + 1)
+        else{rightWrong = rightWrong + 1;
             ////add to minus 10 seconds from timer //
-            timeLeft = (timeLeft - 10)
+            timeLeft = timeLeft - 10;
             wrongAnswerArea.textContent = "Incorrect"
         }
-    //console.log(answerSet)
-    //console.log(rightWrong)
-  
     displayQuestion()
 }
 
@@ -236,7 +228,6 @@ function displayQuestion() {
     answer2Button.textContent = myQuestions[i].answers.b;
     answer3Button.textContent = myQuestions[i].answers.c;
     answer4Button.textContent = myQuestions[i].answers.d;
-    //need to move to next level i
       }else{
         hideShowEnd();        
         finalPage();
@@ -247,69 +238,64 @@ function displayQuestion() {
   function highScoresPage(){
     //grab initials from final page
     userInitials = (document.getElementById('initials').value)
+    //userInitials = userInitials.toUpperCase
     if (userInitials == null) {
             alert("You need to fill out your initials!");
             finalPage();
     }else{
-        //console.log(userInitials)
-        userScore.name = userInitials,
-////retrieve countdown stopped value to create highscore //endTime
-        highScoreResult = 10   //placeholder
-        userScore.highScore =  highScoreResult 
-      //initialsSection.textContent = userScore.name;
-      scoreTitleSection.textContent = 'Your High Score is ' + userScore.highScore;
-    }
-    //put into storage;
-        localStorage.setItem("userScore", JSON.stringify(userScore));
-// /////////////RONNNNNNNY///////////// add new score to array
-        // add to high scores array "userScoreSets" in storage for high scores page later
-        userScoreSets.push(userScore)
-        //localStorage.setItem("userScoreSets", userScoreSets.push(userScore));
-        //console.log(highScoreRecord)
-        console.log(userScore)
-        console.log(userScoreSets)
+      //current player results
+      userScore.name = userInitials;
+      userScore.highScore = timeLeft;
+      var yourScoreArea = document.getElementById('scoreYours');
+      yourScoreArea.textContent = 'Your High Score is ' + userScore.highScore;
+      }
+      userScoreSets.push(userScore);
+      userScoreSets.sort(function (a, b) {
+        return b.highScore - a.highScore;
+      });
+
+      localStorage.setItem("userScoreSets", JSON.stringify(userScoreSets));
 
     hideShowHighScores()
         titleBlockVar.textContent = " ✨ High Scores ✨ ";
-      
- /////////////RONNNNNNNY///////////// pull in all of userscore sets + array length
-           //// pull in local storage answers //players and overall highscores array 
-        //userScore = JSON.parse(localStorage.getItem(userScore))
-        userScoreSets = JSON.parse(localStorage.getItem(userScoreSets))
-       // console.log(userScore)
-        console.log(userScoreSets)
-           yourScoreArea.textContent = ("Congrats " + userScore.name + " your score is: " + userScore.highScore)
-        
-////sort userScoreSets by highest to lowest userscore.highscore
+        yourScoreArea.textContent = 
+        "Congrats " + userScore.name + " your score is: " + userScore.highScore;
 
-            ////create div elements to list all the high scores from overallscores array
-           ////no idea if this is correct, fix later
-            var listScores = document.querySelector(".highScoresList");
-            var c = 0
-            while(c >userScoreSets.length){
-              var li1 = document.createElement("li");
-              listScores.appendChild(li1);
-              c++
-            }
+          ////create div elements to list all the high scores from overallscores array
+          ////no idea if this is correct, fix later
+          var listScores = document.querySelector(".highScoresList");
 
+
+          // var li1 = document.createElement("li");
+          // var c = 0
+
+          var c = 0;
+
+while(c < userScoreSets.length){
+  var li = document.createElement("li");
+  li.classList.add("pastScores");
+  li.innerText= (c + 1) + ".    " + userScoreSets[c].name + " scored " + userScoreSets[c].highScore;
+  listScores.appendChild(li);
+  c++;
+}
     }
 
-                //// Go Back button
-            function goBack(){
-              location.reload();
-            }
+    //// Go Back button
+function goBack(){
+  location.reload();
+}
 
-            //// clear all scores button -- clear local storage
-            function clearScores(){
-              localStorage.clear();
-              location.reload();
-            }
+//// clear all scores button -- clear local storage
+function clearScores(){
+  localStorage.clear();
+  location.reload();
+}
 
-            function highScoresPageNoResults(){
-              highScoresPage();
-              yourScoreArea.style.display = 'none'
+function highScoresPageNoResults(){
+  highScoresPage();
+  yourScoreArea.style.display = 'none'
 
-            }
+}
 
 //---------------Add event listener-----------
 hideShowStart();
