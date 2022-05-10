@@ -251,7 +251,7 @@ function finalPage() {
 //-------what question to pull from array---------//
 
 function displayQuestion() {
-  if (i < 3) {
+  if (i < 10) {
     titleBlockVar.textContent = myQuestions[i].question;
     answer1Button.textContent = myQuestions[i].answers.a;
     answer2Button.textContent = myQuestions[i].answers.b;
