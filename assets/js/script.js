@@ -127,7 +127,7 @@ const myQuestions = [
     correctAnswer: "A",
   },
   {
-    question: "How can you add a comment in a JavaScript??",
+    question: "How can you add a comment in a JavaScript?",
     answers: {
       a: "<!--This is a comment-->",
       b: "'This is a comment'",
