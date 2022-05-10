@@ -27,6 +27,7 @@ var answer4Button = document.querySelector("#answer4");
 var submitButton = document.getElementById("submitBtn");
 var submitScoreButton = document.getElementById("submitScoreBtn");
 var initialsSection = document.getElementById("initials");
+var yourScoreArea = document.getElementById("scoreYours");
 var wrongAnswerArea = document.getElementById("wrongAnswer");
 var goBackButton = document.querySelector("#goBack");
 var clearScoresButton = document.querySelector("#clearScores");
@@ -251,7 +252,7 @@ function finalPage() {
 //-------what question to pull from array---------//
 
 function displayQuestion() {
-  if (i < 3) {
+  if (i < 10) {
     titleBlockVar.textContent = myQuestions[i].question;
     answer1Button.textContent = myQuestions[i].answers.a;
     answer2Button.textContent = myQuestions[i].answers.b;
@@ -315,7 +316,6 @@ function highScoresPage() {
     //current player results
     userScore.name = userInitials;
     userScore.highScore = timeLeft;
-    var yourScoreArea = document.getElementById("scoreYours");
     yourScoreArea.textContent = "Your High Score is " + userScore.highScore;
   }
   //merge and sort all scores array
@@ -324,12 +324,17 @@ function highScoresPage() {
     return b.highScore - a.highScore;
   });
   localStorage.setItem("userScoreSets", JSON.stringify(userScoreSets));
-
   hideShowHighScores();
+  
   titleBlockVar.textContent = " ✨ High Scores ✨ ";
+  
   yourScoreArea.textContent =
-    "Congrats " + userScore.name + " your score is: " + userScore.highScore;
+  "Congrats " + userScore.name + " your score is: " + userScore.highScore;
+  
+  displayHighScores()
+}
 
+function displayHighScores(){
   ////create div elements to list all the high scores from overallscores array
   var listScores = document.querySelector(".highScoresList");
   var c = 0;
@@ -361,9 +366,11 @@ function clearScores() {
 
 // high scores page from header link
 function highScoresPageNoResults() {
-  highScoresPage();
-  yourScoreArea.style.display = "none";
-}
+  hideShowHighScores();
+  yourScoreArea.textContent = "Past Scores to Beat!"
+  displayHighScores()
+    }
+
 
 //---------------Event listener-----------
 hideShowStart();
