@@ -87,7 +87,7 @@ const myQuestions = [
     correctAnswer: "C",
   },
   {
-    question: 'What is the correct JavaScript syntax to change the content of the HTML element below? <p id="demo">This is a demonstration.</p>',
+    question: "What is the correct JavaScript syntax to change the content of the HTML element below? <p id='demo'>This is a demonstration.</p>",
     answers: {
       a: "demo.innerHTML = 'Hello World!'",
       b: "document.getElementByName('p').innerHTML = 'Hello World!'",
