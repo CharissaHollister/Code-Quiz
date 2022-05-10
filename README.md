@@ -17,6 +17,8 @@ Code Quiz - Javascript is an interactive quiz filled with multiple-choice questi
 Player has 3 minutes to complete the quiz, if they do so a score is captured. If they do not complete in time they are given a message and directed to try again<br />
 High scores will be held in local storage to allow for the player(s) to compete for the best score or to monitor improvement<br />
 Player can access the current high scores without doing the quiz via the link in the header<br />
+There are 10 questions, 1 per page, with 4 answers each<br />
+Incorrect answer will deduct 10 seconds from the time remaining and a message will display "incorrect" and they must answer again<br />
 
 ## Website Access
 
