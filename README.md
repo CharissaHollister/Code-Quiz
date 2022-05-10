@@ -28,7 +28,7 @@ https://charissahollister.github.io/Code-Quiz/
 
 https://github.com/CharissaHollister/Code-Quiz
 
-![ScreenShot](./assets/images/ScreenshotWebPage.png)
+![ScreenShot](./assets/images/ScreenshotWebPage.jpg)
 
 ## Future improvement opportunities
 
